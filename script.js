@@ -7,6 +7,13 @@ if (window.location.pathname.includes('keyboard.html')) {
   const keyboard = document.getElementById('keyboard');
   const copyButton = document.getElementById('copy-button');
 
+  if (!textBox || !keyboard || !copyButton) {
+    console.error("Required elements not found!");
+    return;
+  }
+
+  console.log("Elements found:", { textBox, keyboard, copyButton });
+
   // Standard laptop keyboard layout
   const keys = [
     '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
