@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +18,9 @@
         }
         .keyboard {
             display: grid;
-            grid-template-columns: repeat(10, 1fr);
+            grid-template-columns: repeat(14, 1fr);
             gap: 5px;
-            max-width: 600px;
+            max-width: 700px;
         }
         .key {
             padding: 10px;
@@ -28,6 +30,7 @@
             cursor: pointer;
             text-align: center;
             font-size: 16px;
+            border-radius: 5px;
         }
         .key:hover {
             background-color: #0056b3;
@@ -35,59 +38,83 @@
         .wide-key {
             grid-column: span 2;
         }
+        .extra-wide-key {
+            grid-column: span 3;
+        }
     </style>
 </head>
 <body>
     <h1>On-Screen Keyboard</h1>
-    <input type="text" id="textbox" class="form-control mb-3" style="max-width: 500px;">
+    <textarea id="textbox" class="form-control mb-3" style="max-width: 700px; height: 100px;" placeholder="Type here..."></textarea>
     <div class="keyboard">
         <!-- First Row -->
-        <button class="key" onclick="addCharacter('Q')">Q</button>
-        <button class="key" onclick="addCharacter('W')">W</button>
-        <button class="key" onclick="addCharacter('E')">E</button>
-        <button class="key" onclick="addCharacter('R')">R</button>
-        <button class="key" onclick="addCharacter('T')">T</button>
-        <button class="key" onclick="addCharacter('Y')">Y</button>
-        <button class="key" onclick="addCharacter('U')">U</button>
-        <button class="key" onclick="addCharacter('I')">I</button>
-        <button class="key" onclick="addCharacter('O')">O</button>
-        <button class="key" onclick="addCharacter('P')">P</button>
+        <button class="key" onclick="addCharacter('`')">`</button>
+        <button class="key" onclick="addCharacter('1')">1</button>
+        <button class="key" onclick="addCharacter('2')">2</button>
+        <button class="key" onclick="addCharacter('3')">3</button>
+        <button class="key" onclick="addCharacter('4')">4</button>
+        <button class="key" onclick="addCharacter('5')">5</button>
+        <button class="key" onclick="addCharacter('6')">6</button>
+        <button class="key" onclick="addCharacter('7')">7</button>
+        <button class="key" onclick="addCharacter('8')">8</button>
+        <button class="key" onclick="addCharacter('9')">9</button>
+        <button class="key" onclick="addCharacter('0')">0</button>
+        <button class="key" onclick="addCharacter('-')">-</button>
+        <button class="key" onclick="addCharacter('=')">=</button>
+        <button class="key wide-key" onclick="backspace()">Backspace</button>
         
         <!-- Second Row -->
-        <button class="key" onclick="addCharacter('A')">A</button>
-        <button class="key" onclick="addCharacter('S')">S</button>
-        <button class="key" onclick="addCharacter('D')">D</button>
-        <button class="key" onclick="addCharacter('F')">F</button>
-        <button class="key" onclick="addCharacter('G')">G</button>
-        <button class="key" onclick="addCharacter('H')">H</button>
-        <button class="key" onclick="addCharacter('J')">J</button>
-        <button class="key" onclick="addCharacter('K')">K</button>
-        <button class="key" onclick="addCharacter('L')">L</button>
+        <button class="key wide-key" onclick="addCharacter('\t')">Tab</button>
+        "QWERTYUIOP[]\\"
+        .split('').forEach(char => {
+            document.write(`<button class="key" onclick="addCharacter('${char}')">${char}</button>`);
+        });
         <button class="key wide-key" onclick="addCharacter('\n')">Enter</button>
         
         <!-- Third Row -->
-        <button class="key" onclick="addCharacter('Z')">Z</button>
-        <button class="key" onclick="addCharacter('X')">X</button>
-        <button class="key" onclick="addCharacter('C')">C</button>
-        <button class="key" onclick="addCharacter('V')">V</button>
-        <button class="key" onclick="addCharacter('B')">B</button>
-        <button class="key" onclick="addCharacter('N')">N</button>
-        <button class="key" onclick="addCharacter('M')">M</button>
-        <button class="key wide-key" onclick="backspace()">Backspace</button>
+        <button class="key extra-wide-key" onclick="addCharacter('Caps')">Caps Lock</button>
+        "ASDFGHJKL;'"
+        .split('').forEach(char => {
+            document.write(`<button class="key" onclick="addCharacter('${char}')">${char}</button>`);
+        });
+        
+        <!-- Fourth Row -->
+        <button class="key wide-key" onclick="addCharacter('Shift')">Shift</button>
+        "ZXCVBNM,./"
+        .split('').forEach(char => {
+            document.write(`<button class="key" onclick="addCharacter('${char}')">${char}</button>`);
+        });
+        <button class="key wide-key" onclick="addCharacter('Shift')">Shift</button>
         
         <!-- Space Bar -->
-        <button class="key wide-key" onclick="addCharacter(' ')">Space</button>
+        <button class="key extra-wide-key" onclick="addCharacter(' ')" style="grid-column: span 5;">Space</button>
+        <button class="key wide-key" onclick="copyText()">Copy</button>
     </div>
 
     <script>
         function addCharacter(char) {
-            document.getElementById('textbox').value += char;
+            let textbox = document.getElementById('textbox');
+            if (char === '\\n') {
+                textbox.value += '\n';
+            } else if (char === '\\t') {
+                textbox.value += '\t';
+            } else {
+                textbox.value += char;
+            }
         }
         
         function backspace() {
             let textbox = document.getElementById('textbox');
             textbox.value = textbox.value.slice(0, -1);
         }
+        
+        function copyText() {
+            let textbox = document.getElementById('textbox');
+            textbox.select();
+            document.execCommand('copy');
+            alert('Text copied to clipboard!');
+        }
     </script>
 </body>
 </html>
+
