@@ -13,6 +13,20 @@
             justify-content: center;
             height: 100vh;
             background-color: #f8f9fa;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 900px;
+            height: 100px;
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
         .keyboard {
             display: grid;
@@ -21,7 +35,7 @@
             max-width: 900px;
         }
         .key {
-            padding: 10px;
+            padding: 15px;
             background-color: #007bff;
             color: white;
             border: none;
@@ -29,6 +43,7 @@
             text-align: center;
             font-size: 16px;
             border-radius: 5px;
+            transition: background-color 0.2s;
         }
         .key:hover {
             background-color: #0056b3;
@@ -42,11 +57,36 @@
         .space-key {
             grid-column: span 7;
         }
+        .copy-key {
+            grid-column: span 2;
+            background-color: #28a745;
+            font-size: 18px;
+            padding: 20px;
+        }
+        .copy-key:hover {
+            background-color: #218838;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .notification.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <h1>On-Screen Keyboard</h1>
-    <textarea id="textbox" class="form-control mb-3" style="max-width: 900px; height: 100px;" placeholder="Type here..."></textarea>
+    <textarea id="textbox" class="form-control mb-3" placeholder="Type here..."></textarea>
     <div class="keyboard">
         <!-- First Row -->
         <button class="key" onclick="addCharacter('`')">`</button>
@@ -117,8 +157,11 @@
         <button class="key" onclick="addCharacter('Alt')">Alt</button>
         <button class="key" onclick="addCharacter('Fn')">Fn</button>
         <button class="key" onclick="addCharacter('Ctrl')">Ctrl</button>
-        <button class="key wide-key" onclick="copyText()">Copy</button>
+        <button class="key copy-key" onclick="copyText()">Copy</button>
     </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">Text copied!</div>
 
     <script>
         let isCapsLock = false;
@@ -162,7 +205,15 @@
             let textbox = document.getElementById('textbox');
             textbox.select();
             document.execCommand('copy');
-            alert('Text copied to clipboard!');
+            showNotification();
+        }
+
+        function showNotification() {
+            let notification = document.getElementById('notification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
         }
     </script>
 </body>
