@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,11 +58,6 @@
         .space-key {
             grid-column: span 7;
         }
-        .enter-key {
-            grid-column: span 2;
-            grid-row: span 2;
-            background-color: #007bff;
-        }
         .copy-key {
             grid-column: span 2;
             background-color: #28a745;
@@ -70,10 +66,6 @@
         }
         .copy-key:hover {
             background-color: #218838;
-        }
-        .active-key {
-            background-color: #ffc107;
-            color: #000;
         }
         .notification {
             position: fixed;
@@ -130,7 +122,7 @@
         <button class="key" onclick="addCharacter('\\')">\</button>
 
         <!-- Third Row -->
-        <button class="key extra-wide-key" id="capsLock" onclick="toggleCapsLock()">Caps Lock</button>
+        <button class="key extra-wide-key" onclick="toggleCapsLock()">Caps Lock</button>
         <button class="key" onclick="addCharacter('A')">A</button>
         <button class="key" onclick="addCharacter('S')">S</button>
         <button class="key" onclick="addCharacter('D')">D</button>
@@ -142,10 +134,10 @@
         <button class="key" onclick="addCharacter('L')">L</button>
         <button class="key" onclick="addCharacter(';')">;</button>
         <button class="key" onclick="addCharacter("'")">'</button>
-        <button class="key enter-key" onclick="addCharacter('\n')">Enter</button>
+        <button class="key wide-key" onclick="addCharacter('\n')">Enter</button>
 
         <!-- Fourth Row -->
-        <button class="key wide-key" id="leftShift" onclick="toggleShift()">Shift</button>
+        <button class="key wide-key" onclick="toggleShift()">Shift</button>
         <button class="key" onclick="addCharacter('Z')">Z</button>
         <button class="key" onclick="addCharacter('X')">X</button>
         <button class="key" onclick="addCharacter('C')">C</button>
@@ -156,16 +148,16 @@
         <button class="key" onclick="addCharacter(',')">,</button>
         <button class="key" onclick="addCharacter('.')">.</button>
         <button class="key" onclick="addCharacter('/')">/</button>
-        <button class="key wide-key" id="rightShift" onclick="toggleShift()">Shift</button>
+        <button class="key wide-key" onclick="toggleShift()">Shift</button>
 
         <!-- Fifth Row -->
-        <button class="key" id="leftCtrl" onclick="toggleCtrl()">Ctrl</button>
-        <button class="key" id="winKey" onclick="toggleWin()">Win</button>
-        <button class="key" id="leftAlt" onclick="toggleAlt()">Alt</button>
+        <button class="key" onclick="addCharacter('Ctrl')">Ctrl</button>
+        <button class="key" onclick="addCharacter('Win')">Win</button>
+        <button class="key" onclick="addCharacter('Alt')">Alt</button>
         <button class="key space-key" onclick="addCharacter(' ')">Space</button>
-        <button class="key" id="rightAlt" onclick="toggleAlt()">Alt</button>
-        <button class="key" id="fnKey" onclick="toggleFn()">Fn</button>
-        <button class="key" id="rightCtrl" onclick="toggleCtrl()">Ctrl</button>
+        <button class="key" onclick="addCharacter('Alt')">Alt</button>
+        <button class="key" onclick="addCharacter('Fn')">Fn</button>
+        <button class="key" onclick="addCharacter('Ctrl')">Ctrl</button>
         <button class="key copy-key" onclick="copyText()">Copy</button>
     </div>
 
@@ -175,10 +167,6 @@
     <script>
         let isCapsLock = false;
         let isShift = false;
-        let isCtrl = false;
-        let isAlt = false;
-        let isWin = false;
-        let isFn = false;
 
         function addCharacter(char) {
             let textbox = document.getElementById('textbox');
@@ -186,6 +174,10 @@
                 textbox.value += '\n';
             } else if (char === '\t') {
                 textbox.value += '\t';
+            } else if (char === 'Caps Lock') {
+                toggleCapsLock();
+            } else if (char === 'Shift') {
+                toggleShift();
             } else {
                 if (isCapsLock || isShift) {
                     textbox.value += char.toUpperCase();
@@ -202,20 +194,28 @@
 
         function toggleCapsLock() {
             isCapsLock = !isCapsLock;
-            document.getElementById('capsLock').classList.toggle('active-key');
+            alert(`Caps Lock ${isCapsLock ? 'On' : 'Off'}`);
         }
 
         function toggleShift() {
             isShift = !isShift;
-            document.getElementById('leftShift').classList.toggle('active-key');
-            document.getElementById('rightShift').classList.toggle('active-key');
+            alert(`Shift ${isShift ? 'On' : 'Off'}`);
         }
 
-        function toggleCtrl() {
-            isCtrl = !isCtrl;
-            document.getElementById('leftCtrl').classList.toggle('active-key');
-            document.getElementById('rightCtrl').classList.toggle('active-key');
+        function copyText() {
+            let textbox = document.getElementById('textbox');
+            textbox.select();
+            document.execCommand('copy');
+            showNotification();
         }
 
-        function toggleAlt() {
-            isAlt = !isAlt
+        function showNotification() {
+            let notification = document.getElementById('notification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
