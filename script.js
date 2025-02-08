@@ -1,5 +1,8 @@
+console.log("Script loaded!");
+
 // Keyboard Page
 if (window.location.pathname.includes('keyboard.html')) {
+  console.log("Keyboard page detected!");
   const textBox = document.getElementById('text-box');
   const keyboard = document.getElementById('keyboard');
   const copyButton = document.getElementById('copy-button');
@@ -13,20 +16,18 @@ if (window.location.pathname.includes('keyboard.html')) {
     'Ctrl', 'Alt', 'Space', 'Alt', 'Ctrl'
   ];
 
-  // Create keyboard buttons
+  console.log("Creating keyboard buttons...");
   keys.forEach(key => {
     const button = document.createElement('button');
     button.textContent = key;
     button.classList.add('btn', 'btn-outline-secondary');
 
-    // Add special classes for Space and Backspace
     if (key === 'Space') {
       button.classList.add('space');
     } else if (key === 'Backspace') {
       button.classList.add('backspace');
     }
 
-    // Add click event listener
     button.addEventListener('click', () => {
       if (key === 'Space') {
         textBox.value += ' ';
@@ -43,6 +44,8 @@ if (window.location.pathname.includes('keyboard.html')) {
 
     keyboard.appendChild(button);
   });
+
+  console.log("Keyboard buttons created!");
 
   // Copy Text Button
   copyButton.addEventListener('click', () => {
