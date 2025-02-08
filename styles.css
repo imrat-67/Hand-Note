@@ -1,19 +1,36 @@
 /* Custom Styles */
 .keyboard {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(15, 1fr);
   gap: 5px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .keyboard button {
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: background-color 0.2s;
 }
 
-#text-display {
-  padding: 10px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  word-wrap: break-word;
+.keyboard button:hover {
+  background-color: #e9ecef;
+}
+
+.keyboard button.space {
+  grid-column: span 5;
+}
+
+.keyboard button.backspace {
+  grid-column: span 3;
+}
+
+#copy-button {
+  width: 100%;
 }
