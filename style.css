@@ -1,0 +1,19 @@
+/* Custom Styles */
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+}
+
+.keyboard button {
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#text-display {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  word-wrap: break-word;
+}
