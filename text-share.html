@@ -51,12 +51,24 @@
     <div class="container">
         <h1>Text Share</h1>
         <textarea id="textInput" placeholder="Type your text here..."></textarea>
-        <button onclick="saveText()">Save & Generate Link</button>
+        <button onclick="saveText()">Save</button>
         <div class="link" id="linkContainer"></div>
     </div>
 
     <script>
-        // Function to save text and generate a shareable link
+        // Get the keyword from the URL
+        const pathSegments = window.location.pathname.split('/');
+        const keyword = pathSegments[pathSegments.length - 1];
+
+        // Load saved text for the keyword
+        function loadText() {
+            const savedText = localStorage.getItem(keyword);
+            if (savedText) {
+                document.getElementById('textInput').value = savedText;
+            }
+        }
+
+        // Save text to localStorage
         function saveText() {
             const text = document.getElementById('textInput').value.trim();
             if (!text) {
@@ -64,34 +76,9 @@
                 return;
             }
 
-            // Encode the text for the URL
-            const encodedText = encodeURIComponent(text);
-            const url = `${window.location.origin}${window.location.pathname}?text=${encodedText}`;
-
-            // Save the text to localStorage for the same device
-            localStorage.setItem('sharedText', text);
-
-            // Display the shareable link
-            const linkContainer = document.getElementById('linkContainer');
-            linkContainer.innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
-        }
-
-        // Function to load text from the URL or localStorage
-        function loadText() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const textFromUrl = urlParams.get('text');
-
-            if (textFromUrl) {
-                // Display text from the URL
-                const decodedText = decodeURIComponent(textFromUrl);
-                document.getElementById('textInput').value = decodedText;
-            } else {
-                // Display text from localStorage (if available)
-                const savedText = localStorage.getItem('sharedText');
-                if (savedText) {
-                    document.getElementById('textInput').value = savedText;
-                }
-            }
+            // Save text under the keyword
+            localStorage.setItem(keyword, text);
+            alert('Text saved!');
         }
 
         // Load text when the page loads
