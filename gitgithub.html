@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git & GitHub Handy Note</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        .copy-btn {
+            float: right;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .copy-btn:hover {
+            color: #0d6efd;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,7 +26,6 @@
         <!-- Accordion -->
         <div class="accordion" id="gitGuide">
 
-            <!-- Section Template -->
             <!-- Section: Checking -->
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -29,16 +37,88 @@
                     <div class="accordion-body">
                         <ul class="list-group">
                             <li class="list-group-item">
+                                <code>git --version</code> – Check if Git is installed.
+                                <button class="copy-btn" onclick="copyText('git --version')">📋</button>
+                            </li>
+                            <li class="list-group-item">
                                 <code>git status</code> – Check the status of the repository.
                                 <button class="copy-btn" onclick="copyText('git status')">📋</button>
                             </li>
                             <li class="list-group-item">
-                                <code>git log --oneline</code> – View commit history in one line.
+                                <code>git log</code> – View commit history.
+                                <button class="copy-btn" onclick="copyText('git log')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git log --oneline</code> – View concise commit history.
                                 <button class="copy-btn" onclick="copyText('git log --oneline')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git log --graph</code> – View commit history with a branch graph.
+                                <button class="copy-btn" onclick="copyText('git log --graph')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git log -p</code> – View commit history with changes.
+                                <button class="copy-btn" onclick="copyText('git log -p')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git log --author="username"</code> – View commits by a specific author.
+                                <button class="copy-btn" onclick="copyText('git log --author="username"')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git log --since="2023-01-01" --until="2023-12-31"</code> – View commits within a date range.
+                                <button class="copy-btn" onclick="copyText('git log --since="2023-01-01" --until="2023-12-31"')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git show &lt;commit-hash&gt;</code> – Show details of a specific commit.
+                                <button class="copy-btn" onclick="copyText('git show')">📋</button>
                             </li>
                             <li class="list-group-item">
                                 <code>git diff</code> – Show unstaged changes.
                                 <button class="copy-btn" onclick="copyText('git diff')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git diff --staged</code> – Show staged changes.
+                                <button class="copy-btn" onclick="copyText('git diff --staged')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git blame &lt;file&gt;</code> – Show who last modified each line of a file.
+                                <button class="copy-btn" onclick="copyText('git blame')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git remote -v</code> – List remote repositories.
+                                <button class="copy-btn" onclick="copyText('git remote -v')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git branch</code> – List local branches.
+                                <button class="copy-btn" onclick="copyText('git branch')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git branch -r</code> – List remote branches.
+                                <button class="copy-btn" onclick="copyText('git branch -r')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git branch -a</code> – List all branches (local and remote).
+                                <button class="copy-btn" onclick="copyText('git branch -a')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git tag</code> – List all tags.
+                                <button class="copy-btn" onclick="copyText('git tag')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git config --list</code> – List all Git configurations.
+                                <button class="copy-btn" onclick="copyText('git config --list')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git config --get user.name</code> – Get the configured username.
+                                <button class="copy-btn" onclick="copyText('git config --get user.name')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git config --get user.email</code> – Get the configured email.
+                                <button class="copy-btn" onclick="copyText('git config --get user.email')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git reflog</code> – Show a log of all reference changes.
+                                <button class="copy-btn" onclick="copyText('git reflog')">📋</button>
                             </li>
                         </ul>
                     </div>
@@ -61,11 +141,59 @@
                             </li>
                             <li class="list-group-item">
                                 <code>git clone &lt;repo-url&gt;</code> – Clone a repository.
-                                <button class="copy-btn" onclick="copyText('git clone ')">📋</button>
+                                <button class="copy-btn" onclick="copyText('git clone')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git clone --branch &lt;branch-name&gt; &lt;repo-url&gt;</code> – Clone a specific branch.
+                                <button class="copy-btn" onclick="copyText('git clone --branch')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git clone --depth 1 &lt;repo-url&gt;</code> – Clone only the latest commit.
+                                <button class="copy-btn" onclick="copyText('git clone --depth 1')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git branch &lt;branch-name&gt;</code> – Create a new branch.
+                                <button class="copy-btn" onclick="copyText('git branch')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git checkout -b &lt;branch-name&gt;</code> – Create and switch to a new branch.
+                                <button class="copy-btn" onclick="copyText('git checkout -b')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git switch -c &lt;branch-name&gt;</code> – Create and switch to a new branch (Git 2.23+).
+                                <button class="copy-btn" onclick="copyText('git switch -c')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git tag &lt;tag-name&gt;</code> – Create a lightweight tag.
+                                <button class="copy-btn" onclick="copyText('git tag')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git tag -a &lt;tag-name&gt; -m "message"</code> – Create an annotated tag.
+                                <button class="copy-btn" onclick="copyText('git tag -a')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git add &lt;file&gt;</code> – Stage a file for commit.
+                                <button class="copy-btn" onclick="copyText('git add')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git add .</code> – Stage all changes.
+                                <button class="copy-btn" onclick="copyText('git add .')">📋</button>
                             </li>
                             <li class="list-group-item">
                                 <code>git commit -m "message"</code> – Commit changes with a message.
-                                <button class="copy-btn" onclick="copyText('git commit -m \"message\"')">📋</button>
+                                <button class="copy-btn" onclick="copyText('git commit -m')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git commit -am "message"</code> – Stage and commit all tracked files.
+                                <button class="copy-btn" onclick="copyText('git commit -am')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git commit --amend</code> – Amend the previous commit.
+                                <button class="copy-btn" onclick="copyText('git commit --amend')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git commit -S -m "message"</code> – Create a signed commit.
+                                <button class="copy-btn" onclick="copyText('git commit -S -m')">📋</button>
                             </li>
                         </ul>
                     </div>
@@ -83,54 +211,88 @@
                     <div class="accordion-body">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <code>git branch</code> – List branches.
-                                <button class="copy-btn" onclick="copyText('git branch')">📋</button>
+                                <code>git checkout &lt;branch-name&gt;</code> – Switch to an existing branch.
+                                <button class="copy-btn" onclick="copyText('git checkout')">📋</button>
                             </li>
                             <li class="list-group-item">
-                                <code>git checkout -b &lt;branch&gt;</code> – Create & switch to a new branch.
-                                <button class="copy-btn" onclick="copyText('git checkout -b ')">📋</button>
+                                <code>git switch &lt;branch-name&gt;</code> – Switch to an existing branch (Git 2.23+).
+                                <button class="copy-btn" onclick="copyText('git switch')">📋</button>
                             </li>
                             <li class="list-group-item">
-                                <code>git merge &lt;branch&gt;</code> – Merge a branch.
-                                <button class="copy-btn" onclick="copyText('git merge ')">📋</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Section: Deleting -->
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#deleting">
-                        🗑 Deleting (Branches, Tags, Commits)
-                    </button>
-                </h2>
-                <div id="deleting" class="accordion-collapse collapse" data-bs-parent="#gitGuide">
-                    <div class="accordion-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <code>git branch -d &lt;branch&gt;</code> – Delete a branch.
-                                <button class="copy-btn" onclick="copyText('git branch -d ')">📋</button>
+                                <code>git merge &lt;branch-name&gt;</code> – Merge a branch into the current branch.
+                                <button class="copy-btn" onclick="copyText('git merge')">📋</button>
                             </li>
                             <li class="list-group-item">
-                                <code>git tag -d &lt;tag&gt;</code> – Delete a local tag.
-                                <button class="copy-btn" onclick="copyText('git tag -d ')">📋</button>
+                                <code>git rebase &lt;branch-name&gt;</code> – Rebase the current branch onto another branch.
+                                <button class="copy-btn" onclick="copyText('git rebase')">📋</button>
                             </li>
                             <li class="list-group-item">
-                                <code>git reset --hard HEAD~1</code> – Delete last commit.
-                                <button class="copy-btn" onclick="copyText('git reset --hard HEAD~1')">📋</button>
+                                <code>git rebase --interactive &lt;commit-hash&gt;</code> – Interactive rebase.
+                                <button class="copy-btn" onclick="copyText('git rebase --interactive')">📋</button>
                             </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div> <!-- End Accordion -->
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
-
-</body>
-</html>
+                            <li class="list-group-item">
+                                <code>git branch -m &lt;new-branch-name&gt;</code> – Rename the current branch.
+                                <button class="copy-btn" onclick="copyText('git branch -m')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git branch -m &lt;old-name&gt; &lt;new-name&gt;</code> – Rename a branch.
+                                <button class="copy-btn" onclick="copyText('git branch -m')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git reset --soft &lt;commit-hash&gt;</code> – Reset to a commit, keeping changes staged.
+                                <button class="copy-btn" onclick="copyText('git reset --soft')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git reset --mixed &lt;commit-hash&gt;</code> – Reset to a commit, unstaging changes.
+                                <button class="copy-btn" onclick="copyText('git reset --mixed')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git reset --hard &lt;commit-hash&gt;</code> – Reset to a commit, discarding all changes.
+                                <button class="copy-btn" onclick="copyText('git reset --hard')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git revert &lt;commit-hash&gt;</code> – Create a new commit that undoes a previous commit.
+                                <button class="copy-btn" onclick="copyText('git revert')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git cherry-pick &lt;commit-hash&gt;</code> – Apply a specific commit to the current branch.
+                                <button class="copy-btn" onclick="copyText('git cherry-pick')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git remote add &lt;name&gt; &lt;repo-url&gt;</code> – Add a new remote repository.
+                                <button class="copy-btn" onclick="copyText('git remote add')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git remote set-url &lt;name&gt; &lt;new-url&gt;</code> – Change the URL of a remote repository.
+                                <button class="copy-btn" onclick="copyText('git remote set-url')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git remote rename &lt;old-name&gt; &lt;new-name&gt;</code> – Rename a remote repository.
+                                <button class="copy-btn" onclick="copyText('git remote rename')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git fetch &lt;remote&gt;</code> – Fetch changes from a remote repository.
+                                <button class="copy-btn" onclick="copyText('git fetch')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git pull &lt;remote&gt; &lt;branch&gt;</code> – Fetch and merge changes from a remote branch.
+                                <button class="copy-btn" onclick="copyText('git pull')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git push &lt;remote&gt; &lt;branch&gt;</code> – Push changes to a remote branch.
+                                <button class="copy-btn" onclick="copyText('git push')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git push --set-upstream &lt;remote&gt; &lt;branch&gt;</code> – Push and set the upstream branch.
+                                <button class="copy-btn" onclick="copyText('git push --set-upstream')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git push --force</code> – Force push changes (use with caution).
+                                <button class="copy-btn" onclick="copyText('git push --force')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git push --force-with-lease</code> – Force push changes only if the remote branch hasn't changed.
+                                <button class="copy-btn" onclick="copyText('git push --force-with-lease')">📋</button>
+                            </li>
+                            <li class="list-group-item">
+                                <code>git push &lt;remote&gt; &
